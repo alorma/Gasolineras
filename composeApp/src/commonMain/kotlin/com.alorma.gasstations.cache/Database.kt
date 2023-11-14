@@ -12,7 +12,7 @@ internal class Database(databaseDriverFactory: DatabaseDriverFactory) {
     }
   }
 
-  internal fun getAllLaunches(): List<GasStation> {
+  internal fun getAllGasStations(): List<GasStation> {
     return dbQuery.selectAllLaunchesInfo(::mapGasStations).executeAsList()
   }
 
