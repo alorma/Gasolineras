@@ -4,6 +4,8 @@ plugins {
   alias(libs.plugins.kotlinMultiplatform)
   alias(libs.plugins.androidApplication)
   alias(libs.plugins.jetbrainsCompose)
+  kotlin("plugin.serialization").version("1.9.20")
+  alias(libs.plugins.sqldelight)
 }
 
 kotlin {
