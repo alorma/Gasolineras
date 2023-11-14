@@ -31,6 +31,7 @@ internal class Database(databaseDriverFactory: DatabaseDriverFactory) {
     municipalityId: String?,
     provinceId: String?,
     ccaaId: String?,
+    name: String?,
   ): GasStation {
     return GasStation(
       postalCode = postalCode.orEmpty(),
@@ -46,6 +47,7 @@ internal class Database(databaseDriverFactory: DatabaseDriverFactory) {
       ideess = ideess.orEmpty(),
       municipalityId = municipalityId.orEmpty(),
       provinceId = provinceId.orEmpty(),
+      name = name.orEmpty(),
       ccaaId = ccaaId.orEmpty(),
     )
   }
@@ -74,6 +76,7 @@ internal class Database(databaseDriverFactory: DatabaseDriverFactory) {
       municipalityId = gasStation.municipalityId,
       provinceId = gasStation.provinceId,
       ccaaId = gasStation.ccaaId,
+      name = gasStation.name,
     )
   }
 }

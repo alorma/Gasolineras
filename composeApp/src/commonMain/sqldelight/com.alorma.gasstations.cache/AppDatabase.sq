@@ -12,12 +12,13 @@ CREATE TABLE GasStation (
     ideess TEXT,
     municipalityId TEXT,
     provinceId TEXT,
-    ccaaId TEXT
+    ccaaId TEXT,
+    name TEXT
 );
 
 insertLaunch:
-INSERT INTO GasStation(postalCode,address,schedule,locality,margin,municipality,province,remission,sign,saleType,ideess,municipalityId,provinceId,ccaaId)
-VALUES(?,?,?,?,?,?,?,?,?,?,?,?, ?, ?);
+INSERT INTO GasStation(postalCode,address,schedule,locality,margin,municipality,province,remission,sign,saleType,ideess,municipalityId,provinceId,ccaaId, name)
+VALUES(?,?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?);
 
 removeAllLaunches:
 DELETE FROM GasStation;

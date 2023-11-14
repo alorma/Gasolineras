@@ -1,24 +1,21 @@
 package com.alorma.gasstations
 
-import App
+import com.alorma.gasstations.ui.App
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.platform.LocalContext
+import com.alorma.gasstations.cache.DatabaseDriverFactory
+import com.alorma.gasstations.domain.GasStationsSdk
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            App()
+            val databaseDriverFactory = DatabaseDriverFactory(LocalContext.current)
+            val sdk = GasStationsSdk(databaseDriverFactory)
+            App(sdk)
         }
     }
-}
-
-@Preview
-@Composable
-fun AppAndroidPreview() {
-    App()
 }

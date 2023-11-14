@@ -11,6 +11,8 @@ data class GasStation(
   val address: String,
   @SerialName("schedule")
   val schedule: String,
+  @SerialName("Rótulo")
+  val name: String,
   @SerialName("locality")
   val locality: String,
   @SerialName("margin")
