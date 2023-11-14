@@ -33,8 +33,4 @@ data class GasStation(
   val provinceId: String,
   @SerialName("ccaaId")
   val ccaaId: String,
-  @SerialName("coordinates")
-  val coordinates: Coordinates,
-  @SerialName("prices")
-  val prices: Prices
 )
