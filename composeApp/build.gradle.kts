@@ -28,8 +28,6 @@ kotlin {
 
   sourceSets {
       val coroutinesVersion = "1.7.3"
-      val ktorVersion = "2.3.5"
-      val sqlDelightVersion = "1.5.5"
       val dateTimeVersion = "0.4.1"
 
       androidMain.dependencies {
@@ -37,7 +35,7 @@ kotlin {
       implementation(libs.compose.ui.tooling.preview)
       implementation(libs.androidx.activity.compose)
       implementation(libs.ktor.client.android)
-      implementation("com.squareup.sqldelight:android-driver:$sqlDelightVersion")
+      implementation(libs.sqldelight.android.driver)
     }
 
     commonMain.dependencies {
@@ -45,7 +43,7 @@ kotlin {
       implementation(libs.ktor.client.core)
       implementation(libs.ktor.client.content.negotiation)
       implementation(libs.ktor.serialization.kotlinx.json)
-      implementation("com.squareup.sqldelight:runtime:$sqlDelightVersion")
+      implementation(libs.sqldelight.runtime)
       implementation("org.jetbrains.kotlinx:kotlinx-datetime:$dateTimeVersion")
 
       implementation(compose.runtime)
@@ -57,7 +55,7 @@ kotlin {
 
     iosMain.dependencies {
       implementation(libs.ktor.client.darwin)
-      implementation("com.squareup.sqldelight:native-driver:$sqlDelightVersion")
+      implementation(libs.sqldelight.native.driver)
 
     }
   }
