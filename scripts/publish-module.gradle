@@ -1,0 +1,66 @@
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+android {
+  publishing {
+    singleVariant("release") {
+      withSourcesJar()
+      withJavadocJar()
+    }
+
+    multipleVariants {
+      withSourcesJar()
+      withJavadocJar()
+      allVariants()
+    }
+  }
+}
+
+group = project.property("libGroup")
+version = project.property("libVersion")
+
+afterEvaluate {
+  publishing {
+    publications {
+      release(MavenPublication) {
+        from components.release
+
+        groupId project.property("libGroup")
+        artifactId project.project.getName()
+        version project.property("libVersion")
+
+        pom {
+          name = project.project.getName()
+          description = 'Compose Theme Viewer'
+          url = 'https://github.com/alorma/Compose-ThemeViewer-MultiPlatform'
+          licenses {
+            license {
+              name = 'Stream License'
+              url = 'https://github.com/alorma/Compose-ThemeViewer-MultiPlatform/blob/main/LICENSE'
+            }
+          }
+          developers {
+            developer {
+              id = 'alorma'
+              name = 'Bernat Borrás'
+              email = 'bernatbor15@gmail.com'
+            }
+          }
+          scm {
+            connection = 'scm:git:github.com/alorma/Compose-ThemeViewer-MultiPlatform.git'
+            developerConnection = 'scm:git:ssh://github.com/alorma/Compose-ThemeViewer-MultiPlatform.git'
+            url = 'https://github.com/alorma/Compose-ThemeViewer-MultiPlatform/tree/main'
+          }
+        }
+      }
+    }
+  }
+}
+
+ext["signing.keyId"] = rootProject.ext["signing.keyId"]
+ext["signing.password"] = rootProject.ext["signing.password"]
+ext["signing.secretKeyRingFile"] = rootProject.ext["signing.secretKeyRingFile"]
+
+signing {
+  sign publishing.publications
+}
