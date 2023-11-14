@@ -15,10 +15,10 @@ fun App(
   sdk: GasStationsSdk
 ) {
   MaterialTheme {
-    var stations = remember { mutableListOf<GasStation>() }
+    val stations = remember { mutableListOf<GasStation>() }
     LaunchedEffect(Unit) {
       stations.clear()
-      val values = sdk.getGasStations(false)
+      val values = sdk.getGasStations(true)
       stations.addAll(values)
     }
 
