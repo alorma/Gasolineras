@@ -25,7 +25,6 @@ internal class Database(databaseDriverFactory: DatabaseDriverFactory) {
     municipality: String?,
     province: String?,
     remission: String?,
-    sign: String?,
     saleType: String?,
     ideess: String?,
     municipalityId: String?,
@@ -42,7 +41,6 @@ internal class Database(databaseDriverFactory: DatabaseDriverFactory) {
       municipality = municipality.orEmpty(),
       province = province.orEmpty(),
       remission = remission.orEmpty(),
-      sign = sign.orEmpty(),
       saleType = saleType.orEmpty(),
       ideess = ideess.orEmpty(),
       municipalityId = municipalityId.orEmpty(),
@@ -70,13 +68,12 @@ internal class Database(databaseDriverFactory: DatabaseDriverFactory) {
       municipality = gasStation.municipality,
       province = gasStation.province,
       remission = gasStation.remission,
-      sign = gasStation.sign,
       saleType = gasStation.saleType,
       ideess = gasStation.ideess,
       municipalityId = gasStation.municipalityId,
       provinceId = gasStation.provinceId,
       ccaaId = gasStation.ccaaId,
-      name = gasStation.name,
+      sign = gasStation.name,
     )
   }
 }

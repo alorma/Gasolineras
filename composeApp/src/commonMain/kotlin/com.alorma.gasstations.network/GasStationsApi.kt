@@ -21,6 +21,7 @@ class GasStationsApi {
   suspend fun getAllGasStations(): List<GasStation> {
     return httpClient.get(
       "https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/FiltroMunicipio/1141"
-    ).body()
+    ).body<GasStationsList>()
+      .list
   }
 }
