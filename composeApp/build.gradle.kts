@@ -23,6 +23,7 @@ kotlin {
     iosTarget.binaries.framework {
       baseName = "ComposeApp"
       isStatic = true
+      binaryOption("bundleId", "com.alorma.gasstations")
     }
   }
 
@@ -82,6 +83,7 @@ android {
   packaging {
     resources {
       excludes += "/META-INF/{AL2.0,LGPL2.1}"
+      excludes += "/META-INF/versions/9/previous-compilation-data.bin"
     }
   }
   buildTypes {
