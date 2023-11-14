@@ -1,0 +1,27 @@
+CREATE TABLE GasStation (
+    postalCode TEXT,
+    address TEXT,
+    schedule TEXT,
+    locality TEXT,
+    margin TEXT,
+    municipality TEXT,
+    province TEXT,
+    remission TEXT,
+    sign TEXT,
+    saleType TEXT,
+    ideess TEXT,
+    municipalityId TEXT,
+    provinceId TEXT,
+    ccaaId TEXT
+);
+
+insertLaunch:
+INSERT INTO GasStation(postalCode,address,schedule,locality,margin,municipality,province,remission,sign,saleType,ideess,municipalityId,provinceId,ccaaId)
+VALUES(?,?,?,?,?,?,?,?,?,?,?,?, ?, ?);
+
+removeAllLaunches:
+DELETE FROM GasStation;
+
+selectAllLaunchesInfo:
+SELECT GasStation.*
+FROM GasStation;

@@ -23,7 +23,7 @@ kotlin {
     iosSimulatorArm64()
   ).forEach { iosTarget ->
     iosTarget.binaries.framework {
-      baseName = "ComposeApp"
+      baseName = "Gas stations"
       isStatic = true
       binaryOption("bundleId", "com.alorma.gasstations")
     }
@@ -99,6 +99,12 @@ android {
   }
   dependencies {
     debugImplementation(libs.compose.ui.tooling)
+  }
+}
+
+sqldelight {
+  database("AppDatabase") {
+    packageName = "com.alorma.gasstations.cache"
   }
 }
 
