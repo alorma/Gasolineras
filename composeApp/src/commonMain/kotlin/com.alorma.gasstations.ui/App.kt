@@ -6,7 +6,10 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import com.alorma.gasstations.domain.GasStation
 import com.alorma.gasstations.domain.GasStationsSdk
 
@@ -15,11 +18,11 @@ fun App(
   sdk: GasStationsSdk
 ) {
   MaterialTheme {
-    val stations = remember { mutableListOf<GasStation>() }
+    var stations by remember {
+      mutableStateOf<List<GasStation>>(emptyList())
+    }
     LaunchedEffect(Unit) {
-      stations.clear()
-      val values = sdk.getGasStations(true)
-      stations.addAll(values)
+      stations = sdk.getGasStations(true)
     }
 
     LazyColumn {
