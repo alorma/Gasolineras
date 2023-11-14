@@ -27,9 +27,6 @@ kotlin {
   }
 
   sourceSets {
-      val coroutinesVersion = "1.7.3"
-      val dateTimeVersion = "0.4.1"
-
       androidMain.dependencies {
       implementation(libs.compose.ui)
       implementation(libs.compose.ui.tooling.preview)
@@ -39,12 +36,12 @@ kotlin {
     }
 
     commonMain.dependencies {
-      implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
+      implementation(libs.kotlinx.coroutines.core)
       implementation(libs.ktor.client.core)
       implementation(libs.ktor.client.content.negotiation)
       implementation(libs.ktor.serialization.kotlinx.json)
       implementation(libs.sqldelight.runtime)
-      implementation("org.jetbrains.kotlinx:kotlinx-datetime:$dateTimeVersion")
+      implementation(libs.kotlinx.datetime)
 
       implementation(compose.runtime)
       implementation(compose.foundation)
