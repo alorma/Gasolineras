@@ -17,7 +17,7 @@ coroutinesVersion = "1.7.3"
 dateTimeVersion = "0.4.1"
 kotlin = "1.9.20"
 junit = "4.13.2"
-ktorVersion = "2.3.5"
+ktorVersion = "2.3.6"
 multiplatformSettings = "1.1.0"
 sqlDelightVersion = "1.5.5"
 
