@@ -1,6 +1,5 @@
 package com.alorma.gasstations.network
 
-import com.alorma.gasstations.domain.GasStation
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -18,10 +17,9 @@ class GasStationsApi {
     }
   }
 
-  suspend fun getAllGasStations(): List<GasStation> {
+  suspend fun getAllGasStations(): GasStationsList {
     return httpClient.get(
       "https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/FiltroMunicipio/1141"
-    ).body<GasStationsList>()
-      .list
+    ).body()
   }
 }

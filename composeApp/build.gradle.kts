@@ -30,14 +30,6 @@ kotlin {
   }
 
   sourceSets {
-      androidMain.dependencies {
-      implementation(libs.compose.ui)
-      implementation(libs.compose.ui.tooling.preview)
-      implementation(libs.androidx.activity.compose)
-      implementation(libs.ktor.client.android)
-      implementation(libs.sqldelight.android.driver)
-    }
-
     commonMain.dependencies {
       implementation(libs.kotlinx.coroutines.core)
       implementation(libs.ktor.client.core)
@@ -51,7 +43,20 @@ kotlin {
       implementation(compose.material)
       @OptIn(ExperimentalComposeLibrary::class)
       implementation(compose.components.resources)
+
+      implementation(libs.multiplatform.settings)
+      implementation(libs.multiplatform.settings.coroutines)
+      implementation(libs.multiplatform.settings.noarg)
     }
+
+    androidMain.dependencies {
+        implementation(libs.compose.ui)
+        implementation(libs.compose.ui.tooling.preview)
+        implementation(libs.androidx.activity.compose)
+        implementation(libs.ktor.client.android)
+        implementation(libs.sqldelight.android.driver)
+      }
+
 
     iosMain.dependencies {
       implementation(libs.ktor.client.darwin)
