@@ -22,7 +22,7 @@ fun App(
       mutableStateOf<List<GasStation>>(emptyList())
     }
     LaunchedEffect(Unit) {
-      stations = sdk.getGasStations(true)
+      stations = sdk.getGasStations(false)
     }
 
     LazyColumn {
