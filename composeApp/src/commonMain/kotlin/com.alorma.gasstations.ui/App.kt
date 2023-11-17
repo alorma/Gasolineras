@@ -7,27 +7,30 @@ import com.alorma.gasstations.ui.theme.AppTheme
 import moe.tlaster.precompose.PreComposeApp
 import moe.tlaster.precompose.navigation.NavHost
 import moe.tlaster.precompose.navigation.rememberNavigator
+import org.koin.compose.KoinContext
 
 @Composable
 fun App() {
-  AppTheme {
-    PreComposeApp {
-      val navigator = rememberNavigator()
-      NavHost(
-        navigator = navigator,
-        initialRoute = "/home"
-      ) {
-        scene("/home") {
-          HomeScreen(
-            onNavigate = {
-              navigator.navigate("/gasStationsList")
-            },
-          )
-        }
-        scene("/gasStationsList") {
-          GasStationsListScreen(
-            onBack = { navigator.goBack() },
-          )
+  KoinContext {
+    AppTheme {
+      PreComposeApp {
+        val navigator = rememberNavigator()
+        NavHost(
+          navigator = navigator,
+          initialRoute = "/home"
+        ) {
+          scene("/home") {
+            HomeScreen(
+              onNavigate = {
+                navigator.navigate("/gasStationsList")
+              },
+            )
+          }
+          scene("/gasStationsList") {
+            GasStationsListScreen(
+              onBack = { navigator.goBack() },
+            )
+          }
         }
       }
     }

@@ -4,10 +4,11 @@ import com.alorma.gasstations.cache.Database
 import com.alorma.gasstations.domain.GasStationsSdk
 import com.alorma.gasstations.network.GasStationsApi
 import com.russhwolf.settings.Settings
+import io.github.aakira.napier.Napier
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
-import io.ktor.client.plugins.logging.DEFAULT
+import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.serialization.kotlinx.json.json
@@ -28,14 +29,19 @@ object KoinDataModule {
               useAlternativeNames = false
             }
           )
-          install(Logging) {
-            logger = Logger.DEFAULT
+        }
+        install(Logging) {
+          logger = object : Logger {
+            override fun log(message: String) {
+              Napier.d { message }
+            }
           }
-          defaultRequest {
-            url(
-              "https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/"
-            )
-          }
+          level = LogLevel.HEADERS
+        }
+        defaultRequest {
+          url(
+            "https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/"
+          )
         }
       }
     }

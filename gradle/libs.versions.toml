@@ -20,6 +20,7 @@ kotlin = "1.9.20"
 junit = "4.13.2"
 ktorVersion = "2.3.6"
 multiplatformSettings = "1.1.0"
+napier = "2.6.1"
 precompose = "1.5.7"
 sqlDelightVersion = "1.5.5"
 
@@ -62,6 +63,7 @@ multiplatform-settings = { module = "com.russhwolf:multiplatform-settings", vers
 multiplatform-settings-coroutines = { module = "com.russhwolf:multiplatform-settings-coroutines", version.ref = "multiplatformSettings" }
 multiplatform-settings-noarg = { module = "com.russhwolf:multiplatform-settings-no-arg", version.ref = "multiplatformSettings" }
 
+napier = { module = "io.github.aakira:napier", version.ref = "napier" }
 precompose = { module = "moe.tlaster:precompose", version.ref = "precompose" }
 
 sqldelight-android-driver = { module = "com.squareup.sqldelight:android-driver", version.ref = "sqlDelightVersion" }

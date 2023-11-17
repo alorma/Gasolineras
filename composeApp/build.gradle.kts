@@ -53,6 +53,8 @@ kotlin {
 
       api(libs.precompose)
 
+      implementation(libs.napier)
+
       implementation(libs.multiplatform.settings)
       implementation(libs.multiplatform.settings.coroutines)
       implementation(libs.multiplatform.settings.noarg)
