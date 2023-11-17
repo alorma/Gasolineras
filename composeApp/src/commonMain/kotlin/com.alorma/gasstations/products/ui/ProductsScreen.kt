@@ -14,6 +14,7 @@ import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MediumTopAppBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -27,6 +28,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.alorma.gasstations.ui.UiState
 import moe.tlaster.precompose.koin.koinViewModel
@@ -41,7 +44,7 @@ fun ProductsScreen(
 ) {
   val state by viewModel.state.collectAsState()
 
-  val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
+  val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
   Scaffold(
     modifier = Modifier.nestedScroll(
       connection = scrollBehavior.nestedScrollConnection
@@ -119,6 +122,15 @@ fun ProductItemComponent(
       checked = product.selected,
       onCheckedChange = null,
     )
-    Text(text = product.name)
+    Text(
+      modifier = Modifier.weight(1f),
+      text = product.name,
+    )
+    Text(
+      text = "(${product.abbreviation})",
+      style = MaterialTheme.typography.bodySmall,
+      fontStyle = FontStyle.Italic,
+      fontWeight = FontWeight.Bold,
+    )
   }
 }
