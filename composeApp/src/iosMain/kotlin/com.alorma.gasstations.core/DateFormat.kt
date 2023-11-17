@@ -8,11 +8,9 @@ import platform.Foundation.currentLocale
 
 actual fun parseToInstant(strDateTime: String): Instant {
   val formatter = NSDateFormatter().apply {
-    dateFormat = "dd/MM/yyyy HH:mm:ss"
+    dateFormat = dateFormatPattern
     locale = NSLocale.currentLocale
   }
-  return formatter
-    .dateFromString(strDateTime)
-    ?.toKotlinInstant()
+  return formatter.dateFromString(strDateTime)?.toKotlinInstant()
     ?: throw IllegalStateException("Failed to convert String $strDateTime to LocalDateTime")
 }
