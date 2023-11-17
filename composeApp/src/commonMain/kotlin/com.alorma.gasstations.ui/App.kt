@@ -15,17 +15,19 @@ fun App() {
       val navigator = rememberNavigator()
       NavHost(
         navigator = navigator,
-        initialRoute = "/gasStationsList"
+        initialRoute = "/home"
       ) {
-        scene("/gasStationsList") {
-          GasStationsListScreen(
+        scene("/home") {
+          HomeScreen(
             onNavigate = {
-              navigator.navigate("/home")
+              navigator.navigate("/gasStationsList")
             },
           )
         }
-        scene("/home") {
-          HomeScreen()
+        scene("/gasStationsList") {
+          GasStationsListScreen(
+            onBack = { navigator.goBack() },
+          )
         }
       }
     }
