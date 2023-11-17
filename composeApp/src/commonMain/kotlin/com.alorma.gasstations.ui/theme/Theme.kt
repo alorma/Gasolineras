@@ -1,6 +1,7 @@
-package com.example.compose
+package com.alorma.gasstations.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
@@ -73,16 +74,17 @@ private val DarkColors = darkColorScheme(
 @Composable
 fun AppTheme(
   useDarkTheme: Boolean = isSystemInDarkTheme(),
-  content: @Composable() () -> Unit
+  content: @Composable () -> Unit
 ) {
-  val colors = if (!useDarkTheme) {
-    LightColors
-  } else {
+
+  val colorScheme: ColorScheme = dynamicColorScheme(useDarkTheme) ?: if (useDarkTheme) {
     DarkColors
+  } else {
+    LightColors
   }
 
   MaterialTheme(
-    colorScheme = colors,
+    colorScheme = colorScheme,
     content = content
   )
 }
