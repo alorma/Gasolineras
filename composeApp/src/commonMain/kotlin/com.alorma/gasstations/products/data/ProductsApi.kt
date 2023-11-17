@@ -12,8 +12,10 @@ class ProductsApi(
   private val httpClient: HttpClient
 ) {
   suspend fun getAllProducts(): List<ProductType> {
-    return withContext(Dispatchers.IO) {
+    return withContext<List<ProductApiModel>>(Dispatchers.IO) {
       httpClient.get("PreciosCarburantes/Listados/ProductosPetroliferos/").body()
+    }.map { product ->
+      ProductType(id = product.id, name = product.name, abbreviation = product.abbreviation)
     }
   }
 }

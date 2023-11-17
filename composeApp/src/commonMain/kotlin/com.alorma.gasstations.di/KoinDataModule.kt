@@ -40,7 +40,7 @@ object KoinDataModule {
         }
         defaultRequest {
           url(
-            "https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/"
+            "https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/"
           )
         }
       }
