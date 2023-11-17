@@ -13,11 +13,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.alorma.gasstations.domain.GasStationsInfo
 import com.alorma.gasstations.domain.GasStationsSdk
+import org.koin.compose.koinInject
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun App(
-  sdk: GasStationsSdk
+  sdk: GasStationsSdk = koinInject(),
 ) {
   MaterialTheme {
     var gasStationsInfo by remember {

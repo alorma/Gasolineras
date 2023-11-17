@@ -3,12 +3,9 @@ package com.alorma.gasstations
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.ui.platform.LocalContext
-import com.alorma.gasstations.cache.DatabaseDriverFactory
+import com.alorma.gasstations.di.PlatformModule
 import com.alorma.gasstations.di.appModules
-import com.alorma.gasstations.domain.GasStationsSdk
 import com.alorma.gasstations.ui.App
-import com.russhwolf.settings.Settings
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -19,13 +16,11 @@ class MainActivity : ComponentActivity() {
     startKoin {
       androidContext(applicationContext)
       modules(appModules)
+      modules(PlatformModule())
     }
 
     setContent {
-      val databaseDriverFactory = DatabaseDriverFactory(LocalContext.current)
-      val settings = Settings()
-      val sdk = GasStationsSdk(databaseDriverFactory, settings)
-      App(sdk)
+      App()
     }
   }
 }
