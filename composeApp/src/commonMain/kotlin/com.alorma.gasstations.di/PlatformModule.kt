@@ -1,3 +1,7 @@
 package com.alorma.gasstations.di
 
-expect object PlatformModule
+import org.koin.core.module.Module
+
+expect object PlatformModule {
+  operator fun invoke(): Module
+}
