@@ -24,8 +24,9 @@ kotlin {
   ).forEach { iosTarget ->
     iosTarget.binaries.framework {
       baseName = "ComposeApp"
-      isStatic = true
+      isStatic = false
       binaryOption("bundleId", "com.alorma.gasstations")
+      linkerOpts.add("-lsqlite3")
     }
   }
 
@@ -50,9 +51,10 @@ kotlin {
       implementation(libs.multiplatform.settings.noarg)
 
       implementation(project.dependencies.platform(libs.koin.bom))
-      implementation(libs.koin.core)
-      implementation(libs.koin.core.coroutines)
-      implementation(libs.koin.compose)
+
+      api(libs.koin.core)
+      api(libs.koin.core.coroutines)
+      api(libs.koin.compose)
     }
 
     androidMain.dependencies {
@@ -116,6 +118,7 @@ sqldelight {
   database("AppDatabase") {
     packageName = "com.alorma.gasstations.cache"
   }
+  linkSqlite = true
 }
 
 
