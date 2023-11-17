@@ -88,7 +88,7 @@ class Database(databaseDriverFactory: DatabaseDriverFactory) {
         id = id.orEmpty(),
         name = name.orEmpty(),
         abbreviation = abbreviation.orEmpty(),
-        selected = selected != null && selected.toInt() == 1,
+        selected = selected ?: false,
       )
     }.executeAsList()
   }
@@ -100,22 +100,13 @@ class Database(databaseDriverFactory: DatabaseDriverFactory) {
           productId = product.id,
           name = product.name,
           abbreviaton = product.abbreviation,
-          selected = if (product.selected) {
-            1
-          } else {
-            0
-          },
+          selected = product.selected,
         )
       }
     }
   }
 
   suspend fun updateProduct(productType: ProductType) = withContext(Dispatchers.IO) {
-    val value = if (productType.selected) {
-      1
-    } else {
-      0
-    }
-    dbQuery.updateProductSelectById(value.toLong(), productType.id)
+    dbQuery.updateProductSelectById(productType.selected, productType.id)
   }
 }

@@ -41,6 +41,8 @@ kotlin {
       implementation(libs.ktor.logging)
 
       implementation(libs.sqldelight.runtime)
+      implementation(libs.sqldelight.coroutines)
+
       implementation(libs.kotlinx.datetime)
 
       implementation(compose.runtime)
@@ -126,8 +128,10 @@ android {
 }
 
 sqldelight {
-  database("AppDatabase") {
-    packageName = "com.alorma.gasstations.cache"
+  databases {
+    create("AppDatabase") {
+      packageName.set("com.alorma.gasstations.cache")
+    }
   }
   linkSqlite = true
 }

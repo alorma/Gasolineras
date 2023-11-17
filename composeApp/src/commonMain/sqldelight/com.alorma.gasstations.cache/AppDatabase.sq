@@ -1,3 +1,5 @@
+import kotlin.Boolean;
+
 CREATE TABLE GasStation (
     postalCode TEXT,
     address TEXT,
@@ -30,7 +32,7 @@ CREATE TABLE Products (
   productId TEXT,
   name TEXT,
   abbreviaton TEXT,
-  selected INTEGER
+  selected INTEGER AS Boolean
 );
 
 insertProducts:
