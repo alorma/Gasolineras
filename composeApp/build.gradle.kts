@@ -34,9 +34,12 @@ kotlin {
 
     commonMain.dependencies {
       implementation(libs.kotlinx.coroutines.core)
+
       implementation(libs.ktor.client.core)
       implementation(libs.ktor.client.content.negotiation)
       implementation(libs.ktor.serialization.kotlinx.json)
+      implementation(libs.ktor.logging)
+
       implementation(libs.sqldelight.runtime)
       implementation(libs.kotlinx.datetime)
 
