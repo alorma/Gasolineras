@@ -47,16 +47,21 @@ kotlin {
       implementation(libs.multiplatform.settings)
       implementation(libs.multiplatform.settings.coroutines)
       implementation(libs.multiplatform.settings.noarg)
+
+      implementation(project.dependencies.platform(libs.koin.bom))
+      implementation(libs.koin.core)
+      implementation(libs.koin.core.coroutines)
+      implementation(libs.koin.compose)
     }
 
     androidMain.dependencies {
-        implementation(libs.compose.ui)
-        implementation(libs.compose.ui.tooling.preview)
-        implementation(libs.androidx.activity.compose)
-        implementation(libs.ktor.client.android)
-        implementation(libs.sqldelight.android.driver)
-      }
-
+      implementation(libs.compose.ui)
+      implementation(libs.compose.ui.tooling.preview)
+      implementation(libs.androidx.activity.compose)
+      implementation(libs.ktor.client.android)
+      implementation(libs.sqldelight.android.driver)
+      implementation(libs.koin.android)
+    }
 
     iosMain.dependencies {
       implementation(libs.ktor.client.darwin)
