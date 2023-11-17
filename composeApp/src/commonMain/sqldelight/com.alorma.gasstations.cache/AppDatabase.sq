@@ -15,13 +15,13 @@ CREATE TABLE GasStation (
     ccaaId TEXT
 );
 
-insertLaunch:
+insertGasStation:
 INSERT INTO GasStation(postalCode,address,schedule,locality,margin,municipality,province,remission,sign,saleType,ideess,municipalityId,provinceId,ccaaId)
 VALUES(?,?,?,?,?,?,?,?,?,?,?,?, ?, ?);
 
-removeAllLaunches:
+removeAllGasStations:
 DELETE FROM GasStation;
 
-selectAllLaunchesInfo:
+selectAllGasStationsInfo:
 SELECT GasStation.*
 FROM GasStation;

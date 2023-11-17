@@ -10,7 +10,7 @@ import kotlinx.coroutines.withContext
 class GasStationsApi(
   private val httpClient: HttpClient,
 ) {
-  suspend fun getAllGasStations(): GasStationsList {
+  suspend fun getGasStationsByCity(): GasStationsList {
     return withContext(Dispatchers.IO) {
       httpClient.get(
         "FiltroMunicipio/1141"

@@ -11,12 +11,12 @@ class Database(databaseDriverFactory: DatabaseDriverFactory) {
 
   internal suspend fun clearDatabase() = withContext(Dispatchers.IO) {
     dbQuery.transaction {
-      dbQuery.removeAllLaunches()
+      dbQuery.removeAllGasStations()
     }
   }
 
   internal suspend fun getAllGasStations(): List<GasStation> = withContext(Dispatchers.IO) {
-    dbQuery.selectAllLaunchesInfo(::mapGasStations).executeAsList()
+    dbQuery.selectAllGasStationsInfo(::mapGasStations).executeAsList()
   }
 
   private fun mapGasStations(
@@ -62,7 +62,7 @@ class Database(databaseDriverFactory: DatabaseDriverFactory) {
   }
 
   private fun insertLaunch(gasStation: GasStation) {
-    dbQuery.insertLaunch(
+    dbQuery.insertGasStation(
       postalCode = gasStation.postalCode,
       address = gasStation.address,
       schedule = gasStation.schedule,

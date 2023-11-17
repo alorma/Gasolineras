@@ -33,7 +33,7 @@ class GasStationsSdk(
         freshData = false,
       )
     } else {
-      val allGasStations = api.getAllGasStations()
+      val allGasStations = api.getGasStationsByCity()
       val date = allGasStations.date
 
       settings.putString(DateKey, parseToInstant(date).toString())
