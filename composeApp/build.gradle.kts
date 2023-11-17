@@ -23,13 +23,14 @@ kotlin {
     iosSimulatorArm64()
   ).forEach { iosTarget ->
     iosTarget.binaries.framework {
-      baseName = "Gas stations"
+      baseName = "ComposeApp"
       isStatic = true
       binaryOption("bundleId", "com.alorma.gasstations")
     }
   }
 
   sourceSets {
+
     commonMain.dependencies {
       implementation(libs.kotlinx.coroutines.core)
       implementation(libs.ktor.client.core)
@@ -66,7 +67,6 @@ kotlin {
     iosMain.dependencies {
       implementation(libs.ktor.client.darwin)
       implementation(libs.sqldelight.native.driver)
-
     }
   }
 }
@@ -117,4 +117,6 @@ sqldelight {
     packageName = "com.alorma.gasstations.cache"
   }
 }
+
+
 
