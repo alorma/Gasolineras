@@ -6,17 +6,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ProductType(
   @SerialName("IDProducto")
-  val IDProducto: String,
+  val id: String,
   @SerialName("NombreProducto")
-  val NombreProducto: String,
+  val name: String,
   @SerialName("NombreProductoAbreviatura")
-  val NombreProductoAbreviatura: String,
+  val abbreviation: String,
 )
-
-/*
-    {
-        "IDProducto": "18",
-        "NombreProducto": "Gas natural comprimido",
-        "NombreProductoAbreviatura": "GNC"
-    }
- */

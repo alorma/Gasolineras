@@ -1,6 +1,7 @@
 package com.alorma.gasstations.ui
 
 import androidx.compose.runtime.Composable
+import com.alorma.gasstations.products.ui.ProductsScreen
 import com.alorma.gasstations.ui.gasstationslist.GasStationsListScreen
 import com.alorma.gasstations.ui.home.HomeScreen
 import com.alorma.gasstations.ui.theme.AppTheme
@@ -21,13 +22,21 @@ fun App() {
         ) {
           scene("/home") {
             HomeScreen(
-              onNavigate = {
+              onNavigateToGasStations = {
                 navigator.navigate("/gasStationsList")
+              },
+              onNavigateToProducts = {
+                navigator.navigate("/products")
               },
             )
           }
           scene("/gasStationsList") {
             GasStationsListScreen(
+              onBack = { navigator.goBack() },
+            )
+          }
+          scene("/products") {
+            ProductsScreen(
               onBack = { navigator.goBack() },
             )
           }

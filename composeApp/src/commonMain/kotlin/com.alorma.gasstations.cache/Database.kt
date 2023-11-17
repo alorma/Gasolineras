@@ -1,6 +1,7 @@
 package com.alorma.gasstations.cache
 
 import com.alorma.gasstations.domain.GasStation
+import com.alorma.gasstations.network.ProductType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.withContext
@@ -12,6 +13,7 @@ class Database(databaseDriverFactory: DatabaseDriverFactory) {
   internal suspend fun clearDatabase() = withContext(Dispatchers.IO) {
     dbQuery.transaction {
       dbQuery.removeAllGasStations()
+      dbQuery.removeAllProducts()
     }
   }
 
@@ -53,7 +55,7 @@ class Database(databaseDriverFactory: DatabaseDriverFactory) {
     )
   }
 
-  internal fun createGasStations(gasStations: List<GasStation>) {
+  internal suspend fun createGasStations(gasStations: List<GasStation>) = withContext(Dispatchers.IO) {
     dbQuery.transaction {
       gasStations.forEach { gasStation ->
         insertLaunch(gasStation)
@@ -78,5 +80,24 @@ class Database(databaseDriverFactory: DatabaseDriverFactory) {
       ccaaId = gasStation.ccaaId,
       sign = gasStation.name,
     )
+  }
+
+  suspend fun getAllProducts(): List<ProductType> = withContext(Dispatchers.IO) {
+    dbQuery.selectAllProducts { id, name, abbreviation ->
+      ProductType(
+        id = id.orEmpty(),
+        name = name.orEmpty(),
+        abbreviation = abbreviation.orEmpty(),
+      )
+    }.executeAsList()
+  }
+
+  suspend fun insertProducts(products: List<ProductType>) = withContext(Dispatchers.IO) {
+    dbQuery.transaction {
+      dbQuery.removeAllProducts()
+      products.forEach { product ->
+        dbQuery.insertProducts(product.id, product.name, product.abbreviation)
+      }
+    }
   }
 }

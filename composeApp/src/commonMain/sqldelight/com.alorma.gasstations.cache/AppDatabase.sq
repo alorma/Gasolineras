@@ -25,3 +25,20 @@ DELETE FROM GasStation;
 selectAllGasStationsInfo:
 SELECT GasStation.*
 FROM GasStation;
+
+CREATE TABLE Products (
+  productId TEXT,
+  name TEXT,
+  abbreviaton TEXT
+);
+
+insertProducts:
+INSERT INTO Products(productId, name, abbreviaton)
+VALUES(?, ?, ?);
+
+removeAllProducts:
+DELETE FROM Products;
+
+selectAllProducts:
+SELECT Products.*
+FROM Products;

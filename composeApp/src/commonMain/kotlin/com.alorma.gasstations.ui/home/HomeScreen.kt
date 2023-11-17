@@ -8,13 +8,16 @@ import androidx.compose.runtime.Composable
 
 @Composable
 fun HomeScreen(
-  onNavigate: () -> Unit,
+  onNavigateToGasStations: () -> Unit,
+  onNavigateToProducts: () -> Unit,
 ) {
   Scaffold {
     Column {
-      Text(text = "Home")
-      Button(onClick = onNavigate) {
-        Text("Click me")
+      Button(onClick = onNavigateToProducts) {
+        Text("Products")
+      }
+      Button(onClick = onNavigateToGasStations) {
+        Text("Terrassa gas stations")
       }
     }
   }
