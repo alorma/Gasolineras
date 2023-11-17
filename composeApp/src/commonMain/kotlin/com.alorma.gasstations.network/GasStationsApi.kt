@@ -5,6 +5,9 @@ import io.ktor.client.call.body
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.request.get
 import io.ktor.serialization.kotlinx.json.json
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
+import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 
 class GasStationsApi {
@@ -18,8 +21,10 @@ class GasStationsApi {
   }
 
   suspend fun getAllGasStations(): GasStationsList {
-    return httpClient.get(
-      "https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/FiltroMunicipio/1141"
-    ).body()
+    return withContext(Dispatchers.IO) {
+      httpClient.get(
+        "https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/FiltroMunicipio/1141"
+      ).body()
+    }
   }
 }

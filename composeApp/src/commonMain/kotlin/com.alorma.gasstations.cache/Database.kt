@@ -1,19 +1,22 @@
 package com.alorma.gasstations.cache
 
 import com.alorma.gasstations.domain.GasStation
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
+import kotlinx.coroutines.withContext
 
 class Database(databaseDriverFactory: DatabaseDriverFactory) {
   private val database = AppDatabase(databaseDriverFactory.createDriver())
   private val dbQuery = database.appDatabaseQueries
 
-  internal fun clearDatabase() {
+  internal suspend fun clearDatabase() = withContext(Dispatchers.IO) {
     dbQuery.transaction {
       dbQuery.removeAllLaunches()
     }
   }
 
-  internal fun getAllGasStations(): List<GasStation> {
-    return dbQuery.selectAllLaunchesInfo(::mapGasStations).executeAsList()
+  internal suspend fun getAllGasStations(): List<GasStation> = withContext(Dispatchers.IO) {
+    dbQuery.selectAllLaunchesInfo(::mapGasStations).executeAsList()
   }
 
   private fun mapGasStations(
