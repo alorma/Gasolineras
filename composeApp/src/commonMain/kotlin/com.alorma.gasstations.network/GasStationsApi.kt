@@ -12,7 +12,6 @@ class GasStationsApi(
 ) {
   suspend fun getGasStationsByCity(): GasStationsList {
     return withContext(Dispatchers.IO) {
-      httpClient.get("EstacionesTerrestres/FiltroMunicipio/1141").body()
     }
   }
 }
