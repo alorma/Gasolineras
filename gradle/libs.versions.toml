@@ -72,7 +72,6 @@ precompose-koin = { module = "moe.tlaster:precompose-koin", version.ref = "preco
 sqldelight-android-driver = { module = "app.cash.sqldelight:android-driver", version.ref = "sqlDelightVersion" }
 sqldelight-native-driver = { module = "app.cash.sqldelight:native-driver", version.ref = "sqlDelightVersion" }
 sqldelight-runtime = { module = "app.cash.sqldelight:runtime", version.ref = "sqlDelightVersion" }
-sqldelight-coroutines = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "sqlDelightVersion" }
 
 [plugins]
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }

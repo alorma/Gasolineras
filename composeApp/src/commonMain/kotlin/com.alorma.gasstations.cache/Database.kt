@@ -2,13 +2,14 @@ package com.alorma.gasstations.cache
 
 import com.alorma.gasstations.domain.GasStation
 import com.alorma.gasstations.network.ProductType
+import comalormagasstationscache.AppDatabaseQueries
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.withContext
 
-class Database(databaseDriverFactory: DatabaseDriverFactory) {
-  private val database = AppDatabase(databaseDriverFactory.createDriver())
-  private val dbQuery = database.appDatabaseQueries
+class Database(
+  private val dbQuery: AppDatabaseQueries
+) {
 
   internal suspend fun clearDatabase() = withContext(Dispatchers.IO) {
     dbQuery.transaction {

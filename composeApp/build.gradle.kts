@@ -41,7 +41,6 @@ kotlin {
       implementation(libs.ktor.logging)
 
       implementation(libs.sqldelight.runtime)
-      implementation(libs.sqldelight.coroutines)
 
       implementation(libs.kotlinx.datetime)
 

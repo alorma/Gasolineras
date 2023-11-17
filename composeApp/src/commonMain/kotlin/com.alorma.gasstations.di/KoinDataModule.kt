@@ -1,6 +1,8 @@
 package com.alorma.gasstations.di
 
+import com.alorma.gasstations.cache.AppDatabase
 import com.alorma.gasstations.cache.Database
+import com.alorma.gasstations.cache.DatabaseDriverFactory
 import com.alorma.gasstations.domain.GasStationsSdk
 import com.alorma.gasstations.network.GasStationsApi
 import com.russhwolf.settings.Settings
@@ -19,6 +21,12 @@ import org.koin.dsl.module
 object KoinDataModule {
   operator fun invoke() = module {
     factoryOf(::Settings)
+    single {
+      AppDatabase(get<DatabaseDriverFactory>().createDriver())
+    }
+    single {
+      get<AppDatabase>().appDatabaseQueries
+    }
     factoryOf(::Database)
     factory {
       HttpClient {
