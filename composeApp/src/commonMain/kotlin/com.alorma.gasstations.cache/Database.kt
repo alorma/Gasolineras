@@ -83,21 +83,39 @@ class Database(databaseDriverFactory: DatabaseDriverFactory) {
   }
 
   suspend fun getAllProducts(): List<ProductType> = withContext(Dispatchers.IO) {
-    dbQuery.selectAllProducts { id, name, abbreviation ->
+    dbQuery.selectAllProducts { id, name, abbreviation, selected ->
       ProductType(
         id = id.orEmpty(),
         name = name.orEmpty(),
         abbreviation = abbreviation.orEmpty(),
+        selected = selected != null && selected.toInt() == 1,
       )
     }.executeAsList()
   }
 
   suspend fun insertProducts(products: List<ProductType>) = withContext(Dispatchers.IO) {
     dbQuery.transaction {
-      dbQuery.removeAllProducts()
       products.forEach { product ->
-        dbQuery.insertProducts(product.id, product.name, product.abbreviation)
+        dbQuery.insertProducts(
+          productId = product.id,
+          name = product.name,
+          abbreviaton = product.abbreviation,
+          selected = if (product.selected) {
+            1
+          } else {
+            0
+          },
+        )
       }
     }
+  }
+
+  suspend fun updateProduct(productType: ProductType) = withContext(Dispatchers.IO) {
+    val value = if (productType.selected) {
+      1
+    } else {
+      0
+    }
+    dbQuery.updateProductSelectById(value.toLong(), productType.id)
   }
 }

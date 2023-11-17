@@ -1,6 +1,6 @@
-package com.alorma.gasstations.network
+package com.alorma.gasstations.products.ui
 
-data class ProductType(
+data class ProductUiModule(
   val id: String,
   val name: String,
   val abbreviation: String,

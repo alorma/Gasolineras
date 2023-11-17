@@ -17,4 +17,8 @@ class ProductsDataSourceImpl(
       }
     }
   }
+
+  override suspend fun updateProduct(productType: ProductType) {
+    database.updateProduct(productType)
+  }
 }

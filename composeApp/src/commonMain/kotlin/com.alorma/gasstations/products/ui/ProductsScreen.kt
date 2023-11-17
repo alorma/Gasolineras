@@ -1,5 +1,6 @@
 package com.alorma.gasstations.products.ui
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,6 +18,7 @@ import androidx.compose.material3.MediumTopAppBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.minimumInteractiveComponentSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -24,8 +26,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
-import com.alorma.gasstations.network.ProductType
 import com.alorma.gasstations.ui.UiState
 import moe.tlaster.precompose.koin.koinViewModel
 
@@ -71,7 +73,12 @@ fun ProductsScreen(
       when (val currentState = state) {
         UiState.Initial -> {}
         is UiState.Success -> {
-          ProductsListContent(currentState.state)
+          ProductsListContent(
+            state = currentState.state,
+            onSelected = { product ->
+              viewModel.onProductSelected(product)
+            },
+          )
         }
 
         is UiState.Error -> {}
@@ -81,25 +88,36 @@ fun ProductsScreen(
 }
 
 @Composable
-fun ProductsListContent(state: List<ProductType>) {
+fun ProductsListContent(
+  state: List<ProductUiModule>,
+  onSelected: (product: ProductUiModule) -> Unit,
+) {
   LazyColumn {
     items(state) { product ->
-      ProductItemComponent(product)
+      ProductItemComponent(
+        product = product,
+        onSelected = onSelected,
+      )
     }
   }
 }
 
 @Composable
-fun ProductItemComponent(product: ProductType) {
+fun ProductItemComponent(
+  product: ProductUiModule,
+  onSelected: (product: ProductUiModule) -> Unit,
+) {
   Row(
     modifier = Modifier.fillMaxWidth()
+      .clickable(role = Role.Checkbox) { onSelected(product) }
       .padding(horizontal = 16.dp, vertical = 8.dp),
     verticalAlignment = Alignment.CenterVertically,
-    horizontalArrangement = Arrangement.spacedBy(4.dp),
+    horizontalArrangement = Arrangement.spacedBy(8.dp),
   ) {
     Checkbox(
-      checked = false,
-      onCheckedChange = {},
+      modifier = Modifier.minimumInteractiveComponentSize(),
+      checked = product.selected,
+      onCheckedChange = null,
     )
     Text(text = product.name)
   }

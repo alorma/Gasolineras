@@ -29,12 +29,18 @@ FROM GasStation;
 CREATE TABLE Products (
   productId TEXT,
   name TEXT,
-  abbreviaton TEXT
+  abbreviaton TEXT,
+  selected INTEGER
 );
 
 insertProducts:
-INSERT INTO Products(productId, name, abbreviaton)
-VALUES(?, ?, ?);
+INSERT INTO Products(productId, name, abbreviaton, selected)
+VALUES(?, ?, ?, ?);
+
+updateProductSelectById:
+UPDATE Products
+SET selected = ?
+WHERE productId = ?;
 
 removeAllProducts:
 DELETE FROM Products;

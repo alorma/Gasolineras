@@ -15,7 +15,12 @@ class ProductsApi(
     return withContext<List<ProductApiModel>>(Dispatchers.IO) {
       httpClient.get("PreciosCarburantes/Listados/ProductosPetroliferos/").body()
     }.map { product ->
-      ProductType(id = product.id, name = product.name, abbreviation = product.abbreviation)
+      ProductType(
+        id = product.id,
+        name = product.name,
+        abbreviation = product.abbreviation,
+        selected = false,
+      )
     }
   }
 }
