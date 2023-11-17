@@ -1,7 +1,6 @@
 package com.alorma.gasstations.domain
 
 import com.alorma.gasstations.cache.Database
-import com.alorma.gasstations.cache.DatabaseDriverFactory
 import com.alorma.gasstations.core.parseToInstant
 import com.alorma.gasstations.network.GasStationsApi
 import com.russhwolf.settings.Settings
@@ -10,11 +9,10 @@ import kotlinx.datetime.toInstant
 import kotlin.time.Duration.Companion.minutes
 
 class GasStationsSdk(
-  databaseDriverFactory: DatabaseDriverFactory,
   private val settings: Settings,
+  private val database: Database,
+  private val api: GasStationsApi,
 ) {
-  private val database = Database(databaseDriverFactory)
-  private val api = GasStationsApi()
 
   @Throws(Exception::class)
   suspend fun getGasStations(): GasStationsInfo {
