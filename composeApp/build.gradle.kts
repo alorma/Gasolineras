@@ -42,9 +42,12 @@ kotlin {
 
       implementation(compose.runtime)
       implementation(compose.foundation)
+      implementation(compose.animation)
       implementation(compose.material)
       @OptIn(ExperimentalComposeLibrary::class)
       implementation(compose.components.resources)
+
+      api(libs.precompose)
 
       implementation(libs.multiplatform.settings)
       implementation(libs.multiplatform.settings.coroutines)
