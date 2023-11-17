@@ -18,15 +18,16 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import com.alorma.gasstations.domain.GasStationsInfo
 import com.alorma.gasstations.ui.UiState
-import org.koin.compose.koinInject
+import moe.tlaster.precompose.koin.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GasStationsListScreen(
-  viewModel: GasStationsListViewModel = koinInject(),
+  viewModel: GasStationsListViewModel = koinViewModel(
+    vmClass = GasStationsListViewModel::class,
+  ),
   onBack: () -> Unit,
 ) {
-
   val state by viewModel.state.collectAsState()
   Scaffold(
     topBar = {
