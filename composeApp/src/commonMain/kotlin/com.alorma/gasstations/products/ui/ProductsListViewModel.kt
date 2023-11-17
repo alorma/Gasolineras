@@ -18,7 +18,7 @@ class ProductsListViewModel(
         id = product.id,
         name = product.name,
         abbreviation = product.abbreviation,
-        selected = false,
+        selected = product.selected,
       )
     }
     emitSuccess(uiModels)
@@ -30,7 +30,7 @@ class ProductsListViewModel(
         id = product.id,
         name = product.name,
         abbreviation = product.abbreviation,
-        selected = product.selected,
+        selected = !product.selected,
       )
     )
     updateIfSuccess { currentList ->

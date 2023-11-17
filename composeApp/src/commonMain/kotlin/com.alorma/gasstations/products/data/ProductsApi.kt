@@ -16,7 +16,7 @@ class ProductsApi(
       httpClient.get("PreciosCarburantes/Listados/ProductosPetroliferos/").body()
     }.map { product ->
       ProductType(
-        id = product.id,
+        id = product.id.toLong(),
         name = product.name,
         abbreviation = product.abbreviation,
         selected = false,

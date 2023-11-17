@@ -29,7 +29,7 @@ SELECT GasStation.*
 FROM GasStation;
 
 CREATE TABLE Products (
-  productId TEXT,
+  productId INTEGER PRIMARY KEY ,
   name TEXT,
   abbreviaton TEXT,
   selected INTEGER AS Boolean

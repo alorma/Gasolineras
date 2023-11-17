@@ -41,7 +41,7 @@ fun ProductsScreen(
 ) {
   val state by viewModel.state.collectAsState()
 
-  val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
+  val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
   Scaffold(
     modifier = Modifier.nestedScroll(
       connection = scrollBehavior.nestedScrollConnection
@@ -50,7 +50,7 @@ fun ProductsScreen(
       val currentState = state
       if (currentState is UiState.Success) {
         MediumTopAppBar(
-          title = { Text(text = "Gas stations") },
+          title = { Text(text = "Product types") },
           scrollBehavior = scrollBehavior,
           navigationIcon = {
             IconButton(onClick = onBack) {

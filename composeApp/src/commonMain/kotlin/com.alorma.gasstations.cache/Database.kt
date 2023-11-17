@@ -14,7 +14,6 @@ class Database(
   internal suspend fun clearDatabase() = withContext(Dispatchers.IO) {
     dbQuery.transaction {
       dbQuery.removeAllGasStations()
-      dbQuery.removeAllProducts()
     }
   }
 
@@ -86,7 +85,7 @@ class Database(
   suspend fun getAllProducts(): List<ProductType> = withContext(Dispatchers.IO) {
     dbQuery.selectAllProducts { id, name, abbreviation, selected ->
       ProductType(
-        id = id.orEmpty(),
+        id = id,
         name = name.orEmpty(),
         abbreviation = abbreviation.orEmpty(),
         selected = selected ?: false,
@@ -98,7 +97,7 @@ class Database(
     dbQuery.transaction {
       products.forEach { product ->
         dbQuery.insertProducts(
-          productId = product.id,
+          productId = product.id.toLong(),
           name = product.name,
           abbreviaton = product.abbreviation,
           selected = product.selected,

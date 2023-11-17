@@ -9,9 +9,7 @@ class ProductsDataSourceImpl(
   private val api: ProductsApi,
 ) : ProductsDataSource {
   override suspend fun getAllProducts(): List<ProductType> {
-    val cachedProducts = database.getAllProducts()
-
-    return cachedProducts.ifEmpty {
+    return database.getAllProducts().ifEmpty {
       api.getAllProducts().also { products ->
         database.insertProducts(products)
       }
